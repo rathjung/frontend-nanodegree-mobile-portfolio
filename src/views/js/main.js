@@ -421,7 +421,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+  // Change the size of pizzas
   function changePizzaSizes(size) {
     var newWidth = 0;
     switch(size) {
@@ -435,7 +435,7 @@ var resizePizzas = function(size) {
         newWidth = 50;
         break;
       default:
-        console.log("bug in sizeSwitcher");
+        console.log("bug in changePizzaSizes");
     }
 
     // Iterates through pizza elements on the page and changes their widths
@@ -490,6 +490,8 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
+  // Change position of pizzas.
+  // Change log: new variable scrollFromTop to store the value of document.body.scrollTop
   var items = document.querySelectorAll('.mover');
   var scrollFromTop = document.body.scrollTop / 1250;
   for (var i = 0; i < items.length; i++) {

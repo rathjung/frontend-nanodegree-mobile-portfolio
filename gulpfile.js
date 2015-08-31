@@ -3,11 +3,9 @@ var gulp = require('gulp');
 
 // Include Our Plugins
 var clean = require('gulp-clean');
-var concat = require('gulp-concat');
 var minifycss = require('gulp-minify-css') ;
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
-var htmlreplace = require('gulp-html-replace');
 var smoosher = require('gulp-smoosher');
 
 var bases = {
@@ -43,10 +41,9 @@ gulp.task('minifycss', ['clean'], function() {
         .pipe(gulp.dest(bases.dist + 'views/css/'));
 });
 
-// Concatenate & Minify JS
+// Minify JS
 gulp.task('scripts', ['clean'], function() {
     gulp.src(paths.script, {cwd: bases.app})
-        .pipe(concat('app.js'))
         .pipe(uglify())
         .pipe(gulp.dest(bases.dist + 'js/'));
     gulp.src(paths.script2, {cwd: bases.app})
@@ -68,9 +65,6 @@ gulp.task('imagemin', ['clean'], function(){
 gulp.task('html', ['clean'], function(){
     gulp.src(paths.html, {cwd: bases.app})
         .pipe(smoosher())
-        .pipe(htmlreplace({
-            'js' : 'js/app.js'
-        }))
         .pipe(gulp.dest(bases.dist));
 });
 
